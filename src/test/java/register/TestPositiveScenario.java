@@ -1,4 +1,4 @@
-package AutomaticityTests.register;
+package register;
 
 import Base.BaseTest;
 import com.github.javafaker.Faker;
