@@ -14,7 +14,7 @@ public class LoginPage extends BasePage {
     @FindBy(id = "password")
     WebElement passwordField;
 
-    @FindBy(xpath = "//button[contains(text(),'Sign In')]")
+    @FindBy(xpath = "//span[@class='p-button-label p-c']")
     WebElement signInButton;
 
     @FindBy(xpath = "//span[contains(text(),'Username is required')]")
@@ -37,16 +37,16 @@ public class LoginPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public LoginPage enterUsername(String username) {
-        emailField.sendKeys(username);
-        return this;
+    public void enterEmail(String mail) {
+        emailField.sendKeys(mail);
     }
 
-    public LoginPage enterPassword(String password) {
+    public void enterPassword(String password) {
         passwordField.sendKeys(password);
-        return this;
     }
-
+ public void clickSignIn (){
+     signInButton.click();
+ }
     public boolean isUsernameRequiredMessageDisplayed() {
         return (msgUserNameIsRequired).isDisplayed();
     }

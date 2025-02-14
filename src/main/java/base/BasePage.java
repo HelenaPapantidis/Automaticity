@@ -50,7 +50,9 @@ public class BasePage {
         return element.getText();
     }
 
-
+    public void waitForUrlToBe(String expectedUrl) {
+        wait.until(ExpectedConditions.urlToBe(expectedUrl));
+    }
 
 }
 
