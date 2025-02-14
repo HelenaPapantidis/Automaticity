@@ -1,0 +1,33 @@
+
+# IntelliJ IDEA
+.idea/
+
+# User-specific files
+.idea/*.iml
+.idea/.idea.*
+.idea/modules.xml
+.idea/*.ipr
+.idea/*.iws
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Gradle
+.gradle/
+build/
+
+# Maven
+target/
+
+# Log files
+*.log
+
+# .env or other environment-specific files
+.env
+
+# JetBrains IDE system folder
+.idea/.idea_modules/
+
+# IntelliJ IDEA project files
+*.iml
