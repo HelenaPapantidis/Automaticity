@@ -15,12 +15,7 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
@@ -31,7 +26,7 @@
       <dependency>
         <groupId>io.github.bonigarcia</groupId>
         <artifactId>webdrivermanager</artifactId>
-        <version>5.3.0</version>
+        <version>5.9.2</version>
       </dependency>
 
 
@@ -55,7 +50,7 @@
       <version>3.23.0</version>
     </dependency>
 
-    <!-- Log4j za logovanje -->
+    <!-- Log4j za logovanje  nisam pisala logs nisam stigla -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
@@ -73,12 +68,15 @@
       <artifactId>commons-csv</artifactId>
       <version>1.9.0</version>
     </dependency>
+
     <dependency>
       <groupId>com.opencsv</groupId>
       <artifactId>opencsv</artifactId>
       <version>5.6</version>
     </dependency>
+
   </dependencies>
+
     <build>
         <plugins>
             <plugin>
