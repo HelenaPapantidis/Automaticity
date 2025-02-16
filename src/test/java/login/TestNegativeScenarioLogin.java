@@ -13,21 +13,21 @@ public class TestNegativeScenarioLogin extends BaseTest {
     HomePage homePage;
     LoginPage loginPage;
     DashboardPage dashboardPage;
-    String nonRegisteredMail = ConfigReader.getProperty("nonRegisteredMail");
-    String invalidPassword = ConfigReader.getProperty("invalidPassword");
-    String validEmail = ConfigReader.getProperty("validEmail");
-    String validPassword = ConfigReader.getProperty("validPassword");
+
 
     @BeforeMethod
     public void setupTest() {
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
         dashboardPage = new DashboardPage(driver);
-    }
 
+    }
 
     @Test
     public void testLoginWithNonRegisteredMail() {
+        String nonRegisteredMail = ConfigReader.getProperty("nonRegisteredMail");
+        String validPassword = ConfigReader.getProperty("validPassword");
+
         homePage.clickLoginButton();
         loginPage.enterEmail(nonRegisteredMail);
         loginPage.enterPassword(validPassword);
@@ -39,6 +39,8 @@ public class TestNegativeScenarioLogin extends BaseTest {
 
     @Test
     public void testLoginWithInvalidPassword() {
+        String validEmail = ConfigReader.getProperty("validEmail");
+        String invalidPassword = ConfigReader.getProperty("invalidPassword");
         homePage.clickLoginButton();
         loginPage.enterEmail(validEmail);
         loginPage.enterPassword(invalidPassword);
