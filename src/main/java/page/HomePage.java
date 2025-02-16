@@ -1,6 +1,7 @@
 package page;
 
 import base.BasePage;
+import config.ConfigReader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,10 +14,10 @@ import java.time.Duration;
 public class HomePage extends BasePage {
 
     @FindBy(xpath = "//span[contains(text(),'AQA eShop')]")
-    private WebElement pageTitle;
+      private WebElement pageTitle;
 
     @FindBy(id = "loginBtn")
-    private WebElement loginButton;
+      private WebElement loginButton;
 
     @FindBy(xpath = "//a[normalize-space()='Register']")
     private WebElement registerButton;
@@ -26,7 +27,7 @@ public class HomePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public String getTitlePage() {
+    protected  String getTitlePage() {
         return pageTitle.getText();
     }
 
@@ -37,4 +38,5 @@ public class HomePage extends BasePage {
     public void clickToRegisterButton() {
         registerButton.click();
     }
+
 }

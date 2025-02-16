@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.Collection;
-
 public class RegisterPage extends BasePage {
 
     @FindBy(id = "username")
@@ -83,8 +81,12 @@ public class RegisterPage extends BasePage {
         enterInput(passwordField, password);
     }
 
-    public void clickRegister() {
-        clickElement(registerButton);
+    //public void clickRegister() {
+
+      //  clickElement(registerButton);
+    //}
+    public void clickRegister(){
+        js.executeScript("arguments[0].click();", registerButton);
     }
 
     public boolean isUsernameRequiredMessageDisplayed() {
@@ -123,6 +125,9 @@ public class RegisterPage extends BasePage {
         return getElementText(msgErrorInvalidMail);
     }
 
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();  // Selenium WebDriver method to get the current URL
+    }
 }
 
 

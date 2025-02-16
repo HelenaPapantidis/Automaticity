@@ -1,21 +1,26 @@
 package base;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
 public class BasePage {
 
-   public WebDriver driver;
-    public WebDriverWait wait;
+    protected WebDriver driver;
+    protected WebDriverWait wait;
+    protected JavascriptExecutor js;
 
-    // Konstruktor sa wait instancom
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        this.js = (JavascriptExecutor) driver;
+
     }
 
     protected void waitForVisibility(WebElement element) {
@@ -30,12 +35,11 @@ public class BasePage {
     }
 
     // Klik na element
-    protected void clickElement(WebElement element) {
-        waitForVisibility(element);
+      protected void clickElement(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element)).click();
     }
 
-    // Provera da li je element vidljiv
+
     protected boolean isElementDisplayed(WebElement element) {
         try {
             waitForVisibility(element);
@@ -45,16 +49,39 @@ public class BasePage {
         }
     }
 
-    public String getElementText(WebElement element) {
+    protected String getElementText(WebElement element) {
         waitForVisibility(element);
         return element.getText();
     }
 
-    public void waitForUrlToBe(String expectedUrl) {
+    protected void waitForUrlToBe(String expectedUrl) {
         wait.until(ExpectedConditions.urlToBe(expectedUrl));
     }
 
-}
+
+    protected void waitUntilVisible(WebElement element) {
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    protected void waitUntilVisible(java.util.List<WebElement> elements) {
+        wait.until(ExpectedConditions.visibilityOfAllElements(elements));
+    }
+   protected void clearAndType(WebElement element, String text) {
+        waitUntilClickable(element);
+        element.clear();
+        element.sendKeys(text);
+    }
+
+    protected void waitUntilClickable(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    protected void waitForElementToDisappear(WebElement element) {
+        wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+    }
+
+
 
 
 

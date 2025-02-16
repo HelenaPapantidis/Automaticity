@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AutomationSuite" parallel="tests" thread-count="2">
+
+    <test name="cart">
+        <classes>
+            <class name="cart.TestNegativeScenarioCart"/>
+            <class name="cart.TestPositiveScenarioCart"/>
+
+        </classes>
+    </test>
+
+    <test name="login ">
+        <classes>
+            <class name="login.TestNegativeScenarioLogin"/>
+            <class name="login.TestPositiveScenarioLogin"/>
+        </classes>
+    </test>
+
+    <test name="register">
+        <classes>
+            <class name="register.TestNegativeScenario"/>
+            <class name="register.TestPositiveScenario"/>
+        </classes>
+    </test>
+
+    <test name="e2e ">
+        <classes>
+            <class name="e2eTest.TestSuccessfulProductPurchase"/>
+        </classes>
+    </test>
+</suite>
