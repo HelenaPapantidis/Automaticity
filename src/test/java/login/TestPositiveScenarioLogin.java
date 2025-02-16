@@ -14,8 +14,6 @@ public class TestPositiveScenarioLogin extends BaseTest {
     LoginPage loginPage;
     DashboardPage dashboardPage;
 
-    String validUsername = ConfigReader.getProperty("valid.username");
-    String validPassword = ConfigReader.getProperty("valid.password");
 
 
     @BeforeMethod
@@ -36,7 +34,7 @@ public class TestPositiveScenarioLogin extends BaseTest {
         loginPage.clickSignIn();
         dashboardPage.waitForDashboardPage();
 
-        Assert.assertTrue(dashboardPage.isDashboardDisplayed(), "Test FAILED: Dashboard nije prikazan!");
+        Assert.assertTrue(dashboardPage.waitForDashboardPage(), "Test FAILED: Dashboard nije prikazan!");
     }
 
 
