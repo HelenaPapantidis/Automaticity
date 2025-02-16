@@ -2,6 +2,7 @@ package register;
 
 import Base.BaseTest;
 import com.github.javafaker.Faker;
+
 import java.time.Duration;
 
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,13 +14,13 @@ import org.testng.asserts.SoftAssert;
 import page.HomePage;
 import page.RegisterPage;
 import config.ConfigReader;
-import testData.DataProvider;
+import testData.TestDataProvider;
 
 public class TestNegativeScenario extends BaseTest {
     WebDriverWait wait;
-   Faker faker;
+    Faker faker;
     HomePage homePage;
-     RegisterPage registerPage;
+    RegisterPage registerPage;
     SoftAssert softAssert;
 
     @BeforeMethod
@@ -34,20 +35,9 @@ public class TestNegativeScenario extends BaseTest {
 
     @AfterMethod
     public void tearDownTest() {
-        softAssert.assertAll();
+        driver.quit();
     }
 
-    @Test
-    public void testRegistrationWithEmptyFields() {
-        registerPage.clickRegister();
-
-        softAssert.assertTrue(registerPage.isUsernameRequiredMessageDisplayed(), "Validacija za username nije prikazana!");
-        softAssert.assertTrue(registerPage.isEmailRequiredMessageDisplayed(), "Validacija za email nije prikazana!");
-        softAssert.assertTrue(registerPage.isPasswordRequiredMessageDisplayed(), "Validacija za lozinku nije prikazana!");
-        softAssert.assertEquals(driver.getCurrentUrl(), ConfigReader.getProperty("registerURL"), "Korisnik je preusmeren, a nije trebalo!");
-
-        softAssert.assertAll();
-    }
 
     @Test
     public void testRegistrationWithShortPassword() {
@@ -100,7 +90,7 @@ public class TestNegativeScenario extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(dataProvider = "wrongEmailFormat", dataProviderClass = DataProvider.class)
+    @Test(dataProvider = "wrongEmailFormat", dataProviderClass = TestDataProvider.class)
     public void testRegistrationWithWrongFormatEmail(String invalidEmail) {
         String randomUsername = faker.name().username();
         String randomPassword = faker.internet().password(8, 16);
@@ -124,7 +114,24 @@ public class TestNegativeScenario extends BaseTest {
         Assert.assertEquals(registerPage.getEmailFormatErrorMessage(), expectedErrorMessage,
                 "The error message displayed is not as expected.");
 
+    }
+
+    @Test
+    public void testRegistrationWithEmptyFields() {
+
+        registerPage.enterUserName("");
+        registerPage.enterEmail("");
+        registerPage.enterPassword("");
+        registerPage.clickRegister();
+
+        softAssert.assertTrue(registerPage.isUsernameRequiredMessageDisplayed(), "Validacija za username nije prikazana!");
+        softAssert.assertTrue(registerPage.isEmailRequiredMessageDisplayed(), "Validacija za email nije prikazana!");
+        softAssert.assertTrue(registerPage.isPasswordRequiredMessageDisplayed(), "Validacija za lozinku nije prikazana!");
+        softAssert.assertEquals(registerPage.getCurrentUrl(), ConfigReader.getProperty("registerURL"), "Korisnik je preusmeren, a nije trebalo!");
+
+        softAssert.assertAll();
 
 
     }
+
 }
